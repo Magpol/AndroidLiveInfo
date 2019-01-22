@@ -1,8 +1,5 @@
 #!/bin/bash
-# 2018 - https://twitter.com/may_pol17
-#
-# Generic script to dump info from live android device.
-#
+
 TMP_PROP=$(mktemp)
 TMP_INFO=$(mktemp)
 adb shell getprop > ${TMP_PROP}
@@ -41,6 +38,10 @@ echo "[*] Android fingerprint: ${FINGERPRINT}" | tee -a ${TMP_INFO}
 echo "[*] Bluetooth_address: ${BLUETOOTH_MAC}" | tee -a ${TMP_INFO}
 echo "[*] Bluetooth_name: ${BLUETOOTH_NAME}" | tee -a ${TMP_INFO}
 echo "[*] ${ROOT}" | tee -a ${TMP_INFO}
+echo "[*] Device is ${ENCRYPTION}" | tee -a ${TMP_INFO}
+if [[ ! ${ENCRYPTION_TYPE} =~ "none" ]]; then
+    echo "[*] Encryption type: ${ENCRYPTION_TYPE} " | tee -a ${TMP_INFO}
+fi
 echo "[*]" | tee -a ${TMP_INFO}
 read -p "[*] Do you want to dump extended info to ${SPATH}? (Y/n) : " -n 1 -r
 echo
