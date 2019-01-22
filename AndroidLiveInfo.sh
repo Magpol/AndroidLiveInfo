@@ -1,5 +1,8 @@
 #!/bin/bash
-
+# 2018 - https://twitter.com/may_pol17
+#
+# Generic script to dump info from live android device.
+#
 TMP_PROP=$(mktemp)
 TMP_INFO=$(mktemp)
 adb shell getprop > ${TMP_PROP}
